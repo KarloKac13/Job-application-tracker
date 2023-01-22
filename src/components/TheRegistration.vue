@@ -55,9 +55,6 @@
             </div>
         </div>
     </div>
-        <div class="footer">
-            <router-link to="/">Back to homepage!</router-link>
-        </div>
 </div>
 </template>
 
@@ -115,8 +112,6 @@ export default {
             document.getElementById("email").value = this.resetData;
             document.getElementById("password").value = this.resetData;
             document.getElementById("confirmPw").value = this.resetData;
-            // this.$router.push("/login");
-            // this.$router.push("/userLoggedIn");
             }
             await axios.post("/api/users", {
                 data: {
@@ -238,12 +233,17 @@ input {
     width: 300px;
 }
 
+::placeholder {
+    font-family: 'Source Sans Pro', sans-serif;
+}
 .defaultPlaceholderColor::placeholder {
-    color:gray
+    color:gray;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .placeHolderText::placeholder{
     color:lightcoral;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 button {
@@ -254,6 +254,8 @@ button {
     background-color: beige;
     border: 1px solid black;
     border-radius: 10px;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding-bottom: 30px;
 }
 
 button:hover {
@@ -280,11 +282,6 @@ hr {
     box-shadow: 0px 0px 20px 10px beige;
     font-size: 20px;
     font-weight: bold;
-}
-
-.footer{
-    display: flex;
-    justify-content: center;
 }
 
 a:link {

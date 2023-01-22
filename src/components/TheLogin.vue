@@ -1,7 +1,13 @@
 <template>
 <div>
-    <div class="title">Log in</div>
+    <div class="header">
+        <div class="title">Log in</div> 
+        <div class="homepage">
+            <button class="homepageBtnStyle" @click="homepage()">Back to homepage</button>
+        </div>
+    </div>
     <div class="form">
+        <div id="authFailed" class="formItems"></div>
         <div class="formItems">
             <div class="padding">
                 <div>Username/email:</div>
@@ -45,7 +51,8 @@ export default {
             isLoading: false,
             resetData: "",
             users: [],
-            currentUser: ""
+            currentUser: "",
+            authText: "Incorrect username/email or password!"
         }
     },
     methods: {
@@ -64,12 +71,13 @@ export default {
                     (user.username === userName || user.email === userName) &&
                     (userPassword !== this.resetData && userPassword === user.password)
                 });
+
                 if (foundUser) {
                     console.log(foundUser);
-                    localStorage.setItem("user",JSON.stringify(foundUser));
+                    localStorage.setItem("user", JSON.stringify(foundUser));
                     this.$router.push("/userloggedin");
                 } else {
-                    console.log("Incorrect username/email or password!")
+                    document.getElementById("authFailed").innerText = this.authText;
                 }
             }).catch(() => {
                 alert("Something went wrong! Don't worry we're working on it!");
@@ -91,12 +99,25 @@ export default {
         },
         register() {
             this.$router.push("/registration")
+        },
+        homepage() {
+            this.$router.push("/")
         }
     }
 }
 </script>
 
 <style scoped>
+
+.header{
+    height: 100px;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    color: beige;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 30px;
+}
 .title {
     height: 100px;
     width: 100%;
@@ -115,12 +136,26 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 input {
     border-color: lightgray;
     height: 25px;
     width: 300px;
+}
+
+::placeholder {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.defaultPlaceholderColor::placeholder {
+    color:gray;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.placeHolderText::placeholder{
+    color:lightcoral;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .formItems{
@@ -146,7 +181,6 @@ input {
     justify-content:center;
     align-items: center;
     font-size: 20px;
-    font-family: 'Source Sans Pro', sans-serif;
     padding-bottom: 10px;
 }
 
@@ -165,6 +199,8 @@ button {
     background-color: beige;
     border: 1px solid black;
     border-radius: 10px;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding-bottom: 30px;
 }
 
 button:hover {
@@ -178,5 +214,17 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.homepage{
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+font-size: 20px;
+padding-right: 10px;
+}
+
+.homepageBtnStyle {
+width: 190px;
 }
 </style>
