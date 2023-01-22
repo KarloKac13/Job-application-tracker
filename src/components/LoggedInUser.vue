@@ -108,7 +108,12 @@ export default {
                 this.storedApplications = this.applications.filter(user => {
                     return user.user !== this.emptyString && user.user === this.storedUser.username;
                 })
+            }).catch(() => {
+            alert("Something went wrong! Don't worry we're working on it!")
             })
+            if (form === "showForm" && this.storedApplications.length === 0) {
+            alert("No submitted applications found!");
+        }
             console.log(this.storedApplications)
         },
         logout() {

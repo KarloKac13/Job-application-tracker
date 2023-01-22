@@ -113,17 +113,41 @@ export default {
             document.getElementById("password").value = this.resetData;
             document.getElementById("confirmPw").value = this.resetData;
             }
-            await axios.post("/api/users", {
-                data: {
-                    username: username,
-                    email: email,
-                    password: password
-                }
-            }).then(response => {
-                response.data
-            }).then(this.isRegistered = true).catch(() => {
-                alert("Something went wrong! Don't worry we're working on it!")
-            });
+            await axios.get("/api/users")
+                .then(response => {
+                    const users = response.data;
+                    let usernameExists = false;
+                    let emailExists = false;
+                    // Iterate over the users array and check if the input username or email matches any existing user
+                    users.forEach(user => {
+                        if (user.username === username) {
+                            usernameExists = true;
+                        }
+                        if (user.email === email) {
+                            emailExists = true;
+                        }
+                    });
+                    // If the input username or email does not match any existing user, then post the data
+                    if (!usernameExists && !emailExists) {
+                        axios.post("/api/users", {
+                            data: {
+                                username: username,
+                                email: email,
+                                password: password
+                            }
+                        }).then(response => {
+                            console.log(response.data)
+                        }).then(this.isRegistered = true).catch(() => {
+                            alert("Something went wrong! Don't worry we're working on it!")
+                        });
+                    } else if (usernameExists) {
+                        alert("Username is already in use!");
+                    } else if (emailExists) {
+                        alert("Email is already in use!");
+                    }
+                }).catch(() => {
+                    alert("Something went wrong! Don't worry we're working on it!")
+                });
         },
         inputSelectName() {
             if (document.getElementById("username").placeholder === "Please enter a valid username!") {
