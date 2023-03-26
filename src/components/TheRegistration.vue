@@ -77,28 +77,32 @@ export default {
             let usernameLength = document.getElementById("username").innerHTML = username;
 
             if (username === this.resetData || usernameLength.length < 3) {
+                document.getElementById("username").value = this.resetData;
                 document.getElementById("username").style.borderColor = "lightcoral";
                 document.getElementById("username").classList = "placeHolderText";
                 document.getElementById("username").placeholder = "Please enter a valid username!";
-                console.log("Please enter a valid username!/Username must be at least 3 char long!")
+                return console.log("Please enter a valid username!/Username must be at least 3 char long!")
             } if (email === this.resetData || !email.includes("@")) {
+                document.getElementById("email").value = this.resetData;
                 document.getElementById("email").style.borderColor = "lightcoral";
                 document.getElementById("email").classList = "placeHolderText";
                 document.getElementById("email").placeholder = "Please enter a valid email!";
-                console.log("Please enter a valid e-mail!")
+                 return console.log("Please enter a valid e-mail!")
             } if (passwordLength.length < 5 || password === this.resetData) {
+                document.getElementById("password").value = this.resetData;
                 document.getElementById("password").style.borderColor = "lightcoral";
                 document.getElementById("password").classList = "placeHolderText";
                 document.getElementById("password").placeholder = "Please enter a valid password!";
-                console.log("Please enter a valid password!/Password must be at least 5 char long!")
+                return console.log("Please enter a valid password!/Password must be at least 5 char long!")
             } if (confirmPw !== password || confirmPw === this.resetData) {
+                document.getElementById("confirmPw").value = this.resetData;
                 document.getElementById("confirmPw").style.borderColor = "lightcoral";
                 document.getElementById("confirmPw").classList = "placeHolderText";
                 document.getElementById("confirmPw").placeholder = "Please confirm the password!";
-                console.log("Password doesn't match!")
-            } if (usernameLength.length >= 3 && username !== this.resetData &&
-                email !== this.resetData && email.includes("@") && 
-                passwordLength.length >= 5 && password !== this.resetData &&
+                return console.log("Password doesn't match!")
+            } if ((usernameLength.length >= 3 && username !== this.resetData) &&
+                (email !== this.resetData && email.includes("@")) && 
+                (passwordLength.length >= 5 && password !== this.resetData) &&
                 confirmPw === password) {
                     console.log({
                 name: username,

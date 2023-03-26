@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="!isLoading">
     <div class="title">
         <div>
             {{ `Welcome ${currentUser}` }}
@@ -52,25 +52,26 @@
                     <li>{{ application.status }}</li>
                 </ul>
             </div>
+            </div>
+            </Transition>
         </div>
-        </Transition>
     </div>
-</div>
-    <!-- <orbit-spinner 
-    v-if="isLoading"
-    :animation-duration="1200"
-    :size="55"
-    color="black"
-    />
-    <p v-if="isLoading">Loading...</p>
-    <div v-else>{{ users }}</div> -->
+    <div id="spinnerTemplate">
+        <div class="loadingSpinner">
+            <orbit-spinner 
+            v-if="isLoading"
+            :animation-duration="1200"
+            :size="55"
+            color="black" />
+        </div>
+    </div>
 </template>
 
 <script>
-// import { OrbitSpinner } from 'epic-spinners';
+import { OrbitSpinner } from 'epic-spinners';
 import axios from "axios";
 export default {
-    // components: {OrbitSpinner},
+    components: {OrbitSpinner},
     data() {
         return {
             isLoading: true,
@@ -87,6 +88,7 @@ export default {
     },
 
     async created() {
+        window.addEventListener("beforeunload", this.logout);
         await axios.get("/api/users").then(response => {
             this.users = response.data;
             this.isLoading = false;
@@ -98,6 +100,11 @@ export default {
         })
         console.log(this.users)
     },
+
+    unmounted() {
+        window.removeEventListener("beforeunload", this.logout());
+    }, 
+
     methods: {
         async showForms(form) {
             this[form] = !this[form];
@@ -131,16 +138,19 @@ export default {
                 document.getElementById("company").style.borderColor = "lightcoral";
                 document.getElementById("company").classList = "placeHolderText";
                 document.getElementById("company").placeholder = "Please enter a company name!";
+                return
             }
             if (position === this.emptyString) {
                 document.getElementById("position").style.borderColor = "lightcoral";
                 document.getElementById("position").classList = "placeHolderText";
                 document.getElementById("position").placeholder = "Please enter the position you applied to!";
+                return
             }
             if (location === this.emptyString) {
                 document.getElementById("location").style.borderColor = "lightcoral";
                 document.getElementById("location").classList = "placeHolderText";
                 document.getElementById("location").placeholder = "Please enter company location!";
+                return
             }
 
             await axios.post("/api/users", {
@@ -185,7 +195,7 @@ export default {
     },
     beforeRouteEnter(to, from, next) {
         if (localStorage.getItem("user")) {
-                next()
+            next();
             } else {
             next("/login");
             alert("Please log in again!")
@@ -280,5 +290,16 @@ li {
 
 .placeHolderText::placeholder{
     color:lightcoral;
+}
+
+#spinnerTemplate {
+    height: 100%;
+}
+
+.loadingSpinner {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>

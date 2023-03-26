@@ -1,5 +1,5 @@
 <template>
-<div>
+<div v-if="!isLoading">
     <div class="header">
         <div class="title">Log in</div> 
         <div class="homepage">
@@ -35,10 +35,12 @@
         </div>
     </div>
 </div>
-    <div v-if="isLoading" class="loadingSpinner">
-        <loading-spinner ></loading-spinner>
-    </div>
-    <div v-else>{{ users }}</div>
+<div id="template">
+<div v-if="isLoading" class="loadingSpinner">
+    <loading-spinner ></loading-spinner>
+</div>
+</div>
+
 </template>
 
 <script>
@@ -210,10 +212,16 @@ button:hover {
     box-shadow: 3px 3px 3px gray;
 }
 
+#template {
+height: 100%;
+width: 100%;
+}
+
 .loadingSpinner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 .homepage{
