@@ -37,10 +37,9 @@
 </div>
 <div id="template">
 <div v-if="isLoading" class="loadingSpinner">
-    <loading-spinner ></loading-spinner>
+    <loading-spinner></loading-spinner>
 </div>
 </div>
-
 </template>
 
 <script>

@@ -2,7 +2,7 @@
     <orbit-spinner 
     :animation-duration="1200"
     :size="55"
-    color="black"
+    color="black gray red"
     />
 </template>
 
