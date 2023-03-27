@@ -7,6 +7,8 @@ import TheLogin from "./components/TheLogin.vue";
 import TheRegistration from './components/TheRegistration.vue';
 import LoggedInUser from "./components/LoggedInUser.vue"
 import { createServer } from "miragejs";
+import LoadingSpinner from './reusableComponents/LoadingSpinner.vue';
+import HeaderBaseCard from "./reusableComponents/HeaderBaseCard.vue"
 
 const server = new createServer({});
 
@@ -36,6 +38,9 @@ const router = createRouter({
 });
 
 const app = createApp(App);
+
+app.component("loading-spinner", LoadingSpinner)
+app.component("header-basecard", HeaderBaseCard)
 
 app.use(router);
 app.mount('#app');

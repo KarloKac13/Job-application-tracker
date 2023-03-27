@@ -64,10 +64,10 @@
 </template>
 
 <script>
-import LoadingSpinner from './LoadingSpinner.vue';
+// import LoadingSpinner from './LoadingSpinner.vue';
 import axios from "axios";
 export default {
-    components: {LoadingSpinner},
+    // components: {LoadingSpinner},
     data() {
         return {
             isLoading: true,

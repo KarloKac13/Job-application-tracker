@@ -1,11 +1,11 @@
 <template>
 <div v-if="!isLoading">
-    <div class="header">
+    <header-basecard>
         <div class="title">Log in</div> 
         <div class="homepage">
             <button class="homepageBtnStyle" @click="homepage()">Back to homepage</button>
         </div>
-    </div>
+    </header-basecard>
     <div class="form">
         <div id="authFailed" class="formItems"></div>
         <div class="formItems">
@@ -43,10 +43,10 @@
 </template>
 
 <script>
-import LoadingSpinner from './LoadingSpinner.vue';
+// import LoadingSpinner from './LoadingSpinner.vue';
 import axios from "axios";
 export default {
-    components: {LoadingSpinner},
+    // components: {LoadingSpinner},
     data() {
         return {
             isLoading: false,

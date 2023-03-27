@@ -1,11 +1,11 @@
 <template>
-    <div class="header">
+    <header-basecard>
         <div class="title">Job application tracker</div>
         <div class="loginRegister">
             <router-link to="/login">Login</router-link>
             <router-link to="/registration">Register</router-link>
         </div>
-    </div>
+    </header-basecard>
 </template>
 
 <script>

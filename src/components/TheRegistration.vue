@@ -1,11 +1,11 @@
 <template>
 <div class="pageDisplay">
-    <div class="header">
+    <header-basecard>
         <div class="title">Registration form</div> 
         <div class="homepage">
             <button class="homepageBtnStyle" @click="homepage()">Back to homepage</button>
         </div>
-    </div>
+    </header-basecard>
     <div v-if="isRegistered" class="succesfulLogin">User successfully registered!</div>
     <div v-if="isRegistered" class="succesfulLogin">Log in to see your applications!</div>
     <div class="content">
@@ -209,6 +209,7 @@ export default {
     font-size: 30px;
 }
 .title{
+    height: 100px;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -310,6 +311,7 @@ hr {
     box-shadow: 0px 0px 20px 10px beige;
     font-size: 20px;
     font-weight: bold;
+    padding-bottom: 5px;
 }
 
 a:link {
