@@ -18,7 +18,7 @@ export default {
     components: { OrbitSpinner },
     computed: {
         darkModeValue() {
-            return this.darkMode.darkMode
+            return this.darkMode.darkModeSwitch
         }
     }
 }

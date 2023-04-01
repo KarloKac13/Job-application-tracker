@@ -47,7 +47,9 @@
             </div>
             <div class="formItems">
                 <hr>
-                <div class="orStyle">or</div>
+                <div class="orStyle">
+                    or
+                </div>
                 <hr>
             </div>
             <div class="formItems">
@@ -307,8 +309,8 @@ hr {
     display: flex;
     justify-content: center;
     align-items:center;
-    width:50px;
-    box-shadow: 0px 0px 20px 10px beige;
+    width:75px;
+    box-shadow: 0px 0px 15px 15px rgb(245,245,220,0.7);
     font-size: 20px;
     font-weight: bold;
     padding-bottom: 5px;
