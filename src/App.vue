@@ -81,7 +81,7 @@ html,body {
   background-color: white;
   position: absolute;
   border-radius: 50%;
-  transition: transform 0.3s linear;
+  transition: transform 0.3s linear ease-in-out;
 }
 
 .checkbox:checked + .label .ball {
